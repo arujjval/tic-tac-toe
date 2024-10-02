@@ -10,7 +10,8 @@ A simple Tic Tac Toe game created for Hacktoberfest! Test your skills in this cl
 - Classic 3x3 grid
 - Player vs Player mode
 - Simple and intuitive UI
-
+## Play 
+- https://tic-tac-toe-delta-puce.vercel.app/
 ## Installation
 
 1. Clone the repository:
