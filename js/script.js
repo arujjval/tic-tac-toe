@@ -1,5 +1,6 @@
 const gameBoard = document.getElementById('gameBoard');
 const resultElement = document.getElementById('result');
+const currentPlayerDisplay = document.getElementById('currentPlayer');
 
 let currentPlayer = 'X';
 let gameIsOver = false;
@@ -11,6 +12,7 @@ function createBoard() {
         cell.addEventListener('click', handleCellClick);
         gameBoard.appendChild(cell);
     }
+    updateCurrentPlayerDisplay(); // Show the initial player
 }
 
 function handleCellClick(event) {
@@ -29,8 +31,14 @@ function handleCellClick(event) {
             gameIsOver = true;
         } else {
             currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+            updateCurrentPlayerDisplay(); // Update display after each turn
         }
     }
+}
+
+function updateCurrentPlayerDisplay() {
+    currentPlayerDisplay.textContent = `Current Player: ${currentPlayer}`;
+    console.log('Current player:', currentPlayer);
 }
 
 function checkWinner() {
@@ -71,6 +79,7 @@ function resetGame() {
     currentPlayer = 'X';
     gameIsOver = false;
     resultElement.textContent = '';
+    updateCurrentPlayerDisplay(); // Reset display on game reset
 
     for (let i = 0; i < gameBoard.children.length; i++) {
         gameBoard.children[i].textContent = '';
