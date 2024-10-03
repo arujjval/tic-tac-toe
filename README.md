@@ -3,10 +3,12 @@
 A simple Tic Tac Toe game created for Hacktoberfest! Test your skills in this classic two-player game.
 
 ## How to Play
+
 - Players take turns marking an empty cell.
 - The objective is to be the first to get 3 marks in a row, column, or diagonal.
 
 ## Features
+
 - Classic 3x3 grid
 - Player vs Player mode
 - Simple and intuitive UI
@@ -23,9 +25,17 @@ A simple Tic Tac Toe game created for Hacktoberfest! Test your skills in this cl
    ```
 3. Open the `index.html` file in your browser to play.
 
+## Live Game
+
+You can play the game directly via this link: [Play Tic Tac Toe](http://webgame.com/)
+
 ## Contributions
 
 We welcome contributions from everyone! See the [Contributing Guidelines](CONTRIBUTING.md) to get started.
+
+## Support
+
+If you like this project, please consider giving it a ⭐ on GitHub to show your support and help others discover it!
 
 ## License
 
