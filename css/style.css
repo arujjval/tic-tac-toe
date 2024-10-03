@@ -1,13 +1,94 @@
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url('https://blenderartists.org/uploads/default/original/4X/0/5/f/05fb495b0f4ce4fb15ddc0cd136250a6aaae67c2.jpeg') no-repeat center center fixed;
+    background-size: cover; /* This makes the image cover the entire background */
+    font-family: 'Arial', sans-serif;
+    color: #fff;
+}
+
+/* Rest of your CSS remains unchanged */
+
+
 #gameBoard {
     display: grid;
     grid-template-columns: repeat(3, 100px);
     grid-template-rows: repeat(3, 100px);
-    border: 1px solid black;
+    gap: 10px;
+    margin: 20px;
 }
 
+
 .cell {
-    border: 1px solid black;
-    text-align: center;
-    font-size: 30px;
+    width: 100px;
+    height: 100px;
+  
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
     cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
 }
+
+.cell.x {
+    color: #00f0ff; /* Neon Blue */
+    text-shadow: 0 0 10px rgba(0, 240, 255, 0.7);
+    font-weight: 900; /* Extra bold for X */
+    font-size: 3em; /* Optional: Increase font size for more emphasis */
+}
+
+.cell.o {
+    color: #ff4f94; /* Neon Pink */
+    text-shadow: 0 0 10px rgba(255, 79, 148, 0.7);
+    font-weight: 900; /* Extra bold for O */
+    font-size: 3em; /* Optional: Increase font size for more emphasis */
+}
+
+.cell:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+}
+#result {
+    margin-top: 20px;
+    font-size: 1.5em;
+    text-align: center;
+    animation: glow 1.5s infinite alternate;
+    color: #ff007f;
+    text-shadow: 0 0 10px rgba(255, 0, 127, 0.7);
+    font-weight: bold; /* Make the result message bold */
+}
+
+#resetButton {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #00ff7f;
+    color: #1e1e2f;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 0 15px rgba(0, 255, 127, 0.5);
+}
+
+#resetButton:hover {
+    background-color: #1e1e2f;
+    color: #00ff7f;
+    transform: scale(1.05);
+}
+
+@keyframes glow {
+    0% { text-shadow: 0 0 5px #fff, 0 0 10px #fff; }
+    100% { text-shadow: 0 0 20px #ff007f, 0 0 30px #ff007f; }
+}
+
+
+/* https://static.vecteezy.com/system/resources/previews/001/879/980/non_2x/playful-tic-tac-toe-free-vector.jpg */
