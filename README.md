@@ -27,7 +27,7 @@ A simple Tic Tac Toe game created for Hacktoberfest! Test your skills in this cl
 
 ## Live Game
 
-You can play the game directly via this link: [Play Tic Tac Toe](http://webgame.com/)
+You can play the game directly via this link: [Play Tic Tac Toe](https://shashank1618.github.io/tic-tac-toe/)
 
 ## Contributions
 
