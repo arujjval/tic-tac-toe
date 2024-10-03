@@ -1,6 +1,3 @@
-
-// Tic-Tac-Toe
-
 const gameBoard = document.getElementById('gameBoard');
 const resultElement = document.getElementById('result');
 
@@ -20,6 +17,10 @@ function handleCellClick(event) {
     const cell = event.target;
     if (!cell.textContent && !gameIsOver) {
         cell.textContent = currentPlayer;
+
+        // Add class for styling based on current player
+        cell.classList.add(currentPlayer.toLowerCase());
+
         if (checkWinner()) {
             resultElement.textContent = `${currentPlayer} wins!`;
             gameIsOver = true;
@@ -73,15 +74,12 @@ function resetGame() {
 
     for (let i = 0; i < gameBoard.children.length; i++) {
         gameBoard.children[i].textContent = '';
+        gameBoard.children[i].classList.remove('x', 'o'); // Remove the classes
     }
 }
 
-const resetButton = document.createElement('button');
-resetButton.textContent = 'Reset';
+// Set up the reset button
+const resetButton = document.getElementById('resetButton');
 resetButton.addEventListener('click', resetGame);
-document.body.appendChild(resetButton);
 
 createBoard();
-
-
-// End of Tic-Tac-Toe
