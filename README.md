@@ -3,13 +3,22 @@
 A simple Tic Tac Toe game created for Hacktoberfest! Test your skills in this classic two-player game.
 
 ## How to Play
+
 - Players take turns marking an empty cell.
 - The objective is to be the first to get 3 marks in a row, column, or diagonal.
 
 ## Features
+
 - Classic 3x3 grid
 - Player vs Player mode
 - Simple and intuitive UI
+
+## Tic-Tac-Toe Game
+
+- Check out my interactive Tic-Tac-Toe game here:  
+  👉 [Tic-Tac-Toe Game](https://arujjval.github.io/tic-tac-toe)
+
+- Enjoy playing a simple and fun game of Tic-Tac-Toe built with intuitive design and functionality!
 
 ## Installation
 
