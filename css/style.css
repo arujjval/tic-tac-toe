@@ -1,101 +1,119 @@
 body {
-  font-family: Arial, sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
-  background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url('https://blenderartists.org/uploads/default/original/4X/0/5/f/05fb495b0f4ce4fb15ddc0cd136250a6aaae67c2.jpeg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    color: #fff;
+    margin: 0;
 }
 
 .container {
-  text-align: center;
+    text-align: center;
 }
 
 h1 {
-  color: #333;
-  margin-bottom: 20px;
+    color: #fff;
+    margin-bottom: 20px;
 }
 
 #gameBoard {
-  display: grid;
-  grid-template-columns: repeat(3, 100px);
-  grid-template-rows: repeat(3, 100px);
-  gap: 5px;
-  margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+    gap: 10px;
+    margin: 20px;
 }
 
 .cell {
-  background-color: #fff;
-  border: 2px solid #333;
-  border-radius: 10px;
-  font-size: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
+    width: 100px;
+    height: 100px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
 .cell:hover {
-  background-color: #f0f0f0;
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
 }
 
-.cell.x,
+.cell.x {
+    color: #00f0ff;
+    text-shadow: 0 0 10px rgba(0, 240, 255, 0.7);
+    font-weight: 900;
+    font-size: 3em;
+}
+
 .cell.o {
-  cursor: not-allowed;
-}
-
-.cell.x::after {
-  content: "X";
-  color: #e74c3c;
-}
-
-.cell.o::after {
-  content: "O";
-  color: #3498db;
+    color: #ff4f94;
+    text-shadow: 0 0 10px rgba(255, 79, 148, 0.7);
+    font-weight: 900;
+    font-size: 3em;
 }
 
 .cell.winner {
-  background-color: #2ecc71;
-  color: white;
+    background-color: #2ecc71;
+    color: white;
 }
 
 @keyframes popIn {
-  0% {
-    transform: scale(0);
-    opacity: 0;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 .cell.x::after,
 .cell.o::after {
-  display: block;
-  animation: popIn 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    display: block;
+    animation: popIn 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 #result {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 20px;
-  height: 30px;
+    margin-top: 20px;
+    font-size: 1.5em;
+    text-align: center;
+    animation: glow 1.5s infinite alternate;
+    color: #ff007f;
+    text-shadow: 0 0 10px rgba(255, 0, 127, 0.7);
+    font-weight: bold;
+    height: 30px;
 }
 
 #resetButton {
-  background-color: #3498db;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #00ff7f;
+    color: #1e1e2f;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 0 15px rgba(0, 255, 127, 0.5);
 }
 
 #resetButton:hover {
-  background-color: #2980b9;
+    background-color: #1e1e2f;
+    color: #00ff7f;
+    transform: scale(1.05);
+}
+
+@keyframes glow {
+    0% { text-shadow: 0 0 5px #fff, 0 0 10px #fff; }
+    100% { text-shadow: 0 0 20px #ff007f, 0 0 30px #ff007f; }
 }

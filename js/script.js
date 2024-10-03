@@ -17,10 +17,12 @@ function createBoard() {
 function handleCellClick(event) {
   const cell = event.target;
   if (
+    !cell.textContent &&
     !cell.classList.contains("x") &&
     !cell.classList.contains("o") &&
     !gameIsOver
   ) {
+    cell.textContent = currentPlayer;
     cell.classList.add(currentPlayer.toLowerCase());
     if (checkWinner()) {
       resultElement.textContent = `${currentPlayer} wins!`;
@@ -83,7 +85,7 @@ function highlightWinningCells() {
 
 function isBoardFull() {
   return [...gameBoard.children].every(
-    (cell) => cell.classList.contains("x") || cell.classList.contains("o"),
+    (cell) => cell.classList.contains("x") || cell.classList.contains("o")
   );
 }
 
@@ -92,6 +94,7 @@ function resetGame() {
   gameIsOver = false;
   resultElement.textContent = "";
   [...gameBoard.children].forEach((cell) => {
+    cell.textContent = "";
     cell.classList.remove("x", "o", "winner");
   });
 }
