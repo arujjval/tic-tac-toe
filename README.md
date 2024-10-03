@@ -9,7 +9,8 @@ A simple Tic Tac Toe game created for Hacktoberfest! Test your skills in this cl
 ## Features
 - Classic 3x3 grid
 - Player vs Player mode
-- Simple and intuitive UI
+- Real-Time ScoreBoard 
+- Simple and intuitive UI 
 
 ## Installation
 

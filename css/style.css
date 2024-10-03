@@ -1,4 +1,3 @@
-
 body {
     display: flex;
     flex-direction: column;
@@ -9,11 +8,10 @@ body {
     background-size: cover; /* This makes the image cover the entire background */
     font-family: 'Arial', sans-serif;
     color: #fff;
+    position: relative;
 }
 
 /* Rest of your CSS remains unchanged */
-
-
 #gameBoard {
     display: grid;
     grid-template-columns: repeat(3, 100px);
@@ -22,11 +20,29 @@ body {
     margin: 20px;
 }
 
+/* css of scoreboard ....it is on the Top-right */
+#scoreBoard {
+    position: absolute;
+    top: 17%;
+    right: 13px;
+    transform: translateY(-50%);
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 15px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 15px rgba(0, 255, 127, 0.5);
+    font-size: 1.2em;
+    width: 200px;
+    color: #fff;
+}
+
+#scoreBoard p {
+    margin: 10px 0;
+}
 
 .cell {
     width: 100px;
     height: 100px;
-  
     background-color: rgba(255, 255, 255, 0.1);
     border: 2px solid rgba(255, 255, 255, 0.3);
     border-radius: 10px;
@@ -42,20 +58,17 @@ body {
     color: #00f0ff; /* Neon Blue */
     text-shadow: 0 0 10px rgba(0, 240, 255, 0.7);
     font-weight: 900; /* Extra bold for X */
-    font-size: 3em; /* Optional: Increase font size for more emphasis */
+    font-size: 3em;/* Optional: Increase font size for more emphasis */
+
 }
 
 .cell.o {
-    color: #ff4f94; /* Neon Pink */
+    color: #ff4f94;/* Neon Pink */
     text-shadow: 0 0 10px rgba(255, 79, 148, 0.7);
-    font-weight: 900; /* Extra bold for O */
+    font-weight: 900;/* Extra bold for O */
     font-size: 3em; /* Optional: Increase font size for more emphasis */
 }
 
-.cell:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    transform: scale(1.05);
-}
 #result {
     margin-top: 20px;
     font-size: 1.5em;
@@ -89,6 +102,5 @@ body {
     0% { text-shadow: 0 0 5px #fff, 0 0 10px #fff; }
     100% { text-shadow: 0 0 20px #ff007f, 0 0 30px #ff007f; }
 }
-
 
 /* https://static.vecteezy.com/system/resources/previews/001/879/980/non_2x/playful-tic-tac-toe-free-vector.jpg */
