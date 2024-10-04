@@ -83,11 +83,22 @@ function checkWinner() {
       gameBoard.children[combination[0]].textContent !== ""
     ) {
       winSound.play();
+      confettiBlast();
       return true;
     }
   }
 
   return false;
+}
+
+function confettiBlast() {
+  confetti({
+    particleCount: 150,
+    spread: 70,
+    origin: { y: 0.5 }, //start of confetti
+    startVelocity: 30,       
+    gravity: 1.5 //speed of falling down
+  })
 }
 
 function isBoardFull() {
