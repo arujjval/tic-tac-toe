@@ -43,6 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function makeMove(cell) {
         cell.textContent = currentPlayer;
+        cell.classList.add(currentPlayer.toLowerCase()); // Add class 'x' or 'o'
         if (checkWinner(currentPlayer)) {
             resultElement.textContent = `${currentPlayer} wins!`;
             gameIsOver = true;
@@ -164,6 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         for (let cell of gameBoard.children) {
             cell.textContent = '';
+            cell.classList.remove('x', 'o'); // Remove both classes
         }
 
         if (aiOpponent && currentPlayer === 'O') {

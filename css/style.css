@@ -48,17 +48,18 @@ body {
     align-items: center;
     font-size: 2em;
     cursor: pointer;
+    color: black; /* Default color for empty cells */
 }
 
 .cell.x {
-    color: #00f0ff; /* Neon Blue */
-    text-shadow: 0 0 10px rgba(0, 240, 255, 0.7);
+    color: #00BFFF; /* Neon blue color for X */
+    text-shadow: 0 0 5px #00BFFF, 0 0 10px #00BFFF, 0 0 15px #00BFFF; /* Neon effect */
     font-weight: 900; /* Extra bold for X */
     font-size: 3em; /* Optional: Increase font size for more emphasis */
 }
 
 .cell.o {
-    color: #ff4f94; /* Neon Pink */
+    color: red; /* Red color for O */
     text-shadow: 0 0 10px rgba(255, 79, 148, 0.7);
     font-weight: 900; /* Extra bold for O */
     font-size: 3em; /* Optional: Increase font size for more emphasis */
