@@ -54,17 +54,27 @@ function checkWinner() {
     ];
 
     for (let combination of winningCombinations) {
-        if (gameBoard.children[combination[0]].textContent ===
-            gameBoard.children[combination[1]].textContent &&
-            gameBoard.children[combination[1]].textContent ===
-            gameBoard.children[combination[2]].textContent &&
-            gameBoard.children[combination[0]].textContent !== '') {
-            return true;
+        const [a, b, c] = combination;
+
+        if (gameBoard.children[a].textContent ===
+            gameBoard.children[b].textContent &&
+            gameBoard.children[b].textContent ===
+            gameBoard.children[c].textContent &&
+            gameBoard.children[a].textContent !== '') {
+
+            // Apply the highlight class based on the current player (X or O)
+            const winnerClass = currentPlayer === 'X' ? 'highlight-x' : 'highlight-o';
+            gameBoard.children[a].classList.add(winnerClass);
+            gameBoard.children[b].classList.add(winnerClass);
+            gameBoard.children[c].classList.add(winnerClass);
+
+            return true; // There is a winner
         }
     }
 
-    return false;
+    return false; // No winner
 }
+
 
 function isBoardFull() {
     for (let i = 0; i < gameBoard.children.length; i++) {
@@ -82,10 +92,11 @@ function resetGame() {
     updateCurrentPlayerDisplay(); // Reset display on game reset
 
     for (let i = 0; i < gameBoard.children.length; i++) {
-        gameBoard.children[i].textContent = '';
-        gameBoard.children[i].classList.remove('x', 'o'); // Remove the classes
+        gameBoard.children[i].textContent = ''; // Clear X or O
+        gameBoard.children[i].classList.remove('x', 'o', 'highlight-x', 'highlight-o'); // Remove all classes
     }
 }
+
 
 // Set up the reset button
 const resetButton = document.getElementById('resetButton');

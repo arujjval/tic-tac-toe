@@ -102,6 +102,14 @@ body {
     color: #00ff7f;
     transform: scale(1.05);
 }
+.highlight-x {
+    border-color: #00f0ff; /* Neon Blue for X */
+}
+
+.highlight-o {
+    border-color: #ff4f94; /* Neon Pink for O */
+}
+
 
 @keyframes glow {
     0% { text-shadow: 0 0 5px #fff, 0 0 10px #fff; }
