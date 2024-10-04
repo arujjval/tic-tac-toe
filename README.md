@@ -1,6 +1,14 @@
 # Tic Tac Toe Game
 
-A simple Tic Tac Toe game created for Hacktoberfest! Test your skills in this classic two-player game.
+This is a simple yet engaging Tic-Tac-Toe game built using web technologies. The game allows two players to take turns marking spaces on a 3x3 grid, aiming to align three symbols in a row, column, or diagonal to win. Perfect for a quick and fun challenge!
+
+You can try out the live version of the game here:
+
+👉 [Play Tic-Tac-Toe](https://arujjval.github.io/tic-tac-toe) 👈
+
+Enjoy the game and test your strategy!
+
+---
 
 ## How to Play
 
@@ -12,13 +20,6 @@ A simple Tic Tac Toe game created for Hacktoberfest! Test your skills in this cl
 - Classic 3x3 grid
 - Player vs Player mode
 - Simple and intuitive UI
-
-## Tic-Tac-Toe Game
-
-- Check out my interactive Tic-Tac-Toe game here:  
-  👉 [Tic-Tac-Toe Game](https://arujjval.github.io/tic-tac-toe)
-
-- Enjoy playing a simple and fun game of Tic-Tac-Toe built with intuitive design and functionality!
 
 ## Installation
 
