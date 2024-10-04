@@ -32,6 +32,20 @@ body {
     text-align: center;
 }
 
+#scoreBoard {
+    color: #00FFCC;  
+    font-size: 24px;
+    font-weight: bold;
+    text-shadow: 0 0 10px #00FFCC, 0 0 20px #00FFCC;  
+    background-color: rgba(0, 0, 0, 0.7);  
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 2px solid #00FFCC; 
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
+    font-family: 'Arial', sans-serif;  
+    text-align: center;
+}
+
 #gameBoard {
     display: grid;
     grid-template-columns: repeat(3, 100px);

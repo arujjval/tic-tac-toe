@@ -5,6 +5,9 @@ const currentPlayerDisplay = document.getElementById('currentPlayer');
 let currentPlayer = 'X';
 let gameIsOver = false;
 
+let scoreX = 0;
+let scoreO = 0;
+
 function createBoard() {
     for (let i = 0; i < 9; i++) {
         const cell = document.createElement('div');
@@ -13,6 +16,7 @@ function createBoard() {
         gameBoard.appendChild(cell);
     }
     updateCurrentPlayerDisplay(); // Show the initial player
+    updateScoreBoard();
 }
 
 function handleCellClick(event) {
@@ -26,6 +30,12 @@ function handleCellClick(event) {
         if (checkWinner()) {
             resultElement.textContent = `${currentPlayer} wins!`;
             gameIsOver = true;
+            if (currentPlayer === 'X') {
+                scoreX++;
+            } else {
+                scoreO++;
+            }
+            updateScoreBoard();
         } else if (isBoardFull()) {
             resultElement.textContent = "It's a draw!";
             gameIsOver = true;
@@ -38,7 +48,7 @@ function handleCellClick(event) {
 
 function updateCurrentPlayerDisplay() {
     currentPlayerDisplay.textContent = `Current Player: ${currentPlayer}`;
-    console.log('Current player:', currentPlayer);
+    // console.log('Current player:', currentPlayer);
 }
 
 function checkWinner() {
@@ -85,6 +95,11 @@ function resetGame() {
         gameBoard.children[i].textContent = '';
         gameBoard.children[i].classList.remove('x', 'o'); // Remove the classes
     }
+}
+
+function updateScoreBoard() {
+    document.getElementById('scoreX').textContent = `Player X: ${scoreX}`;
+    document.getElementById('scoreO').textContent = `Player O: ${scoreO}`;
 }
 
 // Set up the reset button
