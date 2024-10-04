@@ -49,6 +49,7 @@ body {
     font-size: 2em;
     cursor: pointer;
     color: black; /* Default color for empty cells */
+    position: relative; /* Add this for positioning the strikethrough */
 }
 
 .cell.x {
@@ -56,6 +57,7 @@ body {
     text-shadow: 0 0 5px #00BFFF, 0 0 10px #00BFFF, 0 0 15px #00BFFF; /* Neon effect */
     font-weight: 900; /* Extra bold for X */
     font-size: 3em; /* Optional: Increase font size for more emphasis */
+    z-index: 1; /* Ensure the X and O appear above the strikethrough */
 }
 
 .cell.o {
@@ -63,12 +65,47 @@ body {
     text-shadow: 0 0 10px rgba(255, 79, 148, 0.7);
     font-weight: 900; /* Extra bold for O */
     font-size: 3em; /* Optional: Increase font size for more emphasis */
+    z-index: 1; /* Ensure the X and O appear above the strikethrough */
 }
 
 .cell:hover {
     background-color: rgba(255, 255, 255, 0.2);
     transform: scale(1.05);
 }
+
+.cell.winner::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background-color: #FFD700; /* Gold color for the strikethrough */
+    animation: strikethrough 0.5s ease-out forwards;
+}
+
+@keyframes strikethrough {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 100%;
+    }
+}
+
+.cell.winner {
+    animation: winnerPulse 1s infinite alternate;
+}
+
+@keyframes winnerPulse {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.1);
+    }
+}
+
 #result {
     margin-top: 20px;
     font-size: 1.5em;

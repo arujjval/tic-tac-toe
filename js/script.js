@@ -128,9 +128,15 @@ document.addEventListener('DOMContentLoaded', () => {
             [0, 4, 8], [2, 4, 6] // Diagonals
         ];
 
-        return winCombos.some(combo => 
-            combo.every(index => cells[index].textContent === player)
-        );
+        for (let combo of winCombos) {
+            if (combo.every(index => cells[index].textContent === player)) {
+                // Add strikethrough effect to winning cells
+                combo.forEach(index => cells[index].classList.add('winner'));
+                return true;
+            }
+        }
+
+        return false;
     }
 
     function checkWinnerBoard(board) {
@@ -165,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         for (let cell of gameBoard.children) {
             cell.textContent = '';
-            cell.classList.remove('x', 'o'); // Remove both classes
+            cell.classList.remove('x', 'o', 'winner'); // Remove all classes
         }
 
         if (aiOpponent && currentPlayer === 'O') {
