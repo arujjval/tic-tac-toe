@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>Tic-Tac-Toe</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <div id="currentPlayer">Current Player: X</div> <!-- Added this line -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div id="currentPlayer">Current Player: X</div>
+    <!-- Added this line -->
     <div id="scoreBoard">
         <span id="scoreX">Player X: 0</span> | 
         <span id="scoreO">Player O: 0</span>
     </div>
     <div id="gameBoard"></div>
     <div id="result"></div>
-    <button id="resetButton">Reset</button>
-    
+    <div id="buttonDiv">
+      <button id="resetButton">Play Again</button>
+      <button id="soundButton">Sound: ON</button>
+    </div>
     <script src="js/script.js"></script>
-</body>
+  </body>
 </html>
