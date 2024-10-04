@@ -2,8 +2,30 @@
 const gameBoard = document.getElementById("gameBoard");
 const resultElement = document.getElementById("result");
 const resetButton = document.getElementById("resetButton");
+const currentPlayerDisplay = document.getElementById("currentPlayer");
+const soundButton = document.getElementById("soundButton");
+
 let currentPlayer = "X";
 let gameIsOver = false;
+
+// Sound effects
+const backgroundSound = new Audio("sounds/background.wav");
+const clickSound = new Audio("sounds/click.wav");
+const winSound = new Audio("sounds/win.wav");
+
+backgroundSound.loop = true;
+backgroundSound.volume = 0.1;
+backgroundSound.play();
+
+soundButton.addEventListener("click", () => {
+  if (backgroundSound.paused) {
+    backgroundSound.play();
+    soundButton.textContent = "Sound: On";
+  } else {
+    backgroundSound.pause();
+    soundButton.textContent = "Sound: Off";
+  }
+});
 
 function createBoard() {
   for (let i = 0; i < 9; i++) {
@@ -12,9 +34,11 @@ function createBoard() {
     cell.addEventListener("click", handleCellClick);
     gameBoard.appendChild(cell);
   }
+  updateCurrentPlayerDisplay();
 }
 
 function handleCellClick(event) {
+  clickSound.play();
   const cell = event.target;
   if (
     !cell.textContent &&
@@ -27,14 +51,20 @@ function handleCellClick(event) {
     if (checkWinner()) {
       resultElement.textContent = `${currentPlayer} wins!`;
       gameIsOver = true;
+      winSound.play();
       highlightWinningCells();
     } else if (isBoardFull()) {
       resultElement.textContent = "It's a draw!";
       gameIsOver = true;
     } else {
       currentPlayer = currentPlayer === "X" ? "O" : "X";
+      updateCurrentPlayerDisplay();
     }
   }
+}
+
+function updateCurrentPlayerDisplay() {
+  currentPlayerDisplay.textContent = `Current Player: ${currentPlayer}`;
 }
 
 function checkWinner() {
@@ -93,6 +123,7 @@ function resetGame() {
   currentPlayer = "X";
   gameIsOver = false;
   resultElement.textContent = "";
+  updateCurrentPlayerDisplay();
   [...gameBoard.children].forEach((cell) => {
     cell.textContent = "";
     cell.classList.remove("x", "o", "winner");
