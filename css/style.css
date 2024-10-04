@@ -13,6 +13,24 @@ body {
 
 /* Rest of your CSS remains unchanged */
 
+#currentPlayer {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #00FFCC;  
+    font-size: 24px;
+    font-weight: bold;
+    text-shadow: 0 0 10px #00FFCC, 0 0 20px #00FFCC;  
+    z-index: 10; 
+    background-color: rgba(0, 0, 0, 0.7);  
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 2px solid #00FFCC; 
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
+    font-family: 'Arial', sans-serif;  
+    text-align: center;
+}
 
 #gameBoard {
     display: grid;
