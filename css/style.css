@@ -1,4 +1,3 @@
-
 body {
     display: flex;
     flex-direction: column;
@@ -34,26 +33,21 @@ body {
 
 #gameBoard {
     display: grid;
-    grid-template-columns: repeat(3, 100px);
-    grid-template-rows: repeat(3, 100px);
+    grid-template-columns: repeat(3, 1fr);
     gap: 10px;
-    margin: 20px;
+    max-width: 300px;
+    margin: 20px auto;
 }
-
 
 .cell {
     width: 100px;
     height: 100px;
-  
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-radius: 10px;
+    border: 2px solid #333;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 2em;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
 }
 
 .cell.x {
@@ -110,3 +104,47 @@ body {
 
 
 /* https://static.vecteezy.com/system/resources/previews/001/879/980/non_2x/playful-tic-tac-toe-free-vector.jpg */
+
+#game-container {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+h1 {
+    color: #00FFCC;
+    text-shadow: 0 0 10px #00FFCC, 0 0 20px #00FFCC;
+}
+
+#mode-selection {
+    margin-bottom: 20px;
+}
+
+#mode-selection h2 {
+    color: #00FFCC;
+    margin-bottom: 15px;
+}
+
+button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    cursor: pointer;
+    background-color: #00ff7f;
+    color: #1e1e2f;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 0 15px rgba(0, 255, 127, 0.5);
+}
+
+button:hover {
+    background-color: #1e1e2f;
+    color: #00ff7f;
+    transform: scale(1.05);
+}
+
+.hidden {
+    display: none;
+}

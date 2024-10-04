@@ -1,29 +1,49 @@
-const gameBoard = document.getElementById('gameBoard');
-const resultElement = document.getElementById('result');
-const currentPlayerDisplay = document.getElementById('currentPlayer');
+document.addEventListener('DOMContentLoaded', () => {
+    const gameBoard = document.getElementById('gameBoard');
+    const resultElement = document.getElementById('result');
+    const currentPlayerDisplay = document.getElementById('currentPlayer');
+    const modeSelection = document.getElementById('mode-selection');
+    const playHumanButton = document.getElementById('playHuman');
+    const playAIButton = document.getElementById('playAI');
+    const resetButton = document.getElementById('resetButton');
 
-let currentPlayer = 'X';
-let gameIsOver = false;
+    let currentPlayer = 'X';
+    let gameIsOver = false;
+    let aiOpponent = false;
 
-function createBoard() {
-    for (let i = 0; i < 9; i++) {
-        const cell = document.createElement('div');
-        cell.classList.add('cell');
-        cell.addEventListener('click', handleCellClick);
-        gameBoard.appendChild(cell);
+    function startGame(withAI) {
+        aiOpponent = withAI;
+        modeSelection.classList.add('hidden');
+        gameBoard.classList.remove('hidden');
+        currentPlayerDisplay.classList.remove('hidden');
+        resetButton.classList.remove('hidden');
+        createBoard();
+        resetGame();
     }
-    updateCurrentPlayerDisplay(); // Show the initial player
-}
 
-function handleCellClick(event) {
-    const cell = event.target;
-    if (!cell.textContent && !gameIsOver) {
+    function createBoard() {
+        gameBoard.innerHTML = '';
+        for (let i = 0; i < 9; i++) {
+            const cell = document.createElement('div');
+            cell.classList.add('cell');
+            cell.addEventListener('click', handleCellClick);
+            gameBoard.appendChild(cell);
+        }
+    }
+
+    function handleCellClick(event) {
+        const cell = event.target;
+        if (!cell.textContent && !gameIsOver) {
+            makeMove(cell);
+            if (aiOpponent && !gameIsOver) {
+                setTimeout(makeAIMove, 500);
+            }
+        }
+    }
+
+    function makeMove(cell) {
         cell.textContent = currentPlayer;
-
-        // Add class for styling based on current player
-        cell.classList.add(currentPlayer.toLowerCase());
-
-        if (checkWinner()) {
+        if (checkWinner(currentPlayer)) {
             resultElement.textContent = `${currentPlayer} wins!`;
             gameIsOver = true;
         } else if (isBoardFull()) {
@@ -31,64 +51,137 @@ function handleCellClick(event) {
             gameIsOver = true;
         } else {
             currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
-            updateCurrentPlayerDisplay(); // Update display after each turn
-        }
-    }
-}
-
-function updateCurrentPlayerDisplay() {
-    currentPlayerDisplay.textContent = `Current Player: ${currentPlayer}`;
-    console.log('Current player:', currentPlayer);
-}
-
-function checkWinner() {
-    const winningCombinations = [
-        [0, 1, 2],
-        [3, 4, 5],
-        [6, 7, 8],
-        [0, 3, 6],
-        [1, 4, 7],
-        [2, 5, 8],
-        [0, 4, 8],
-        [2, 4, 6]
-    ];
-
-    for (let combination of winningCombinations) {
-        if (gameBoard.children[combination[0]].textContent ===
-            gameBoard.children[combination[1]].textContent &&
-            gameBoard.children[combination[1]].textContent ===
-            gameBoard.children[combination[2]].textContent &&
-            gameBoard.children[combination[0]].textContent !== '') {
-            return true;
+            updateCurrentPlayerDisplay();
         }
     }
 
-    return false;
-}
-
-function isBoardFull() {
-    for (let i = 0; i < gameBoard.children.length; i++) {
-        if (gameBoard.children[i].textContent === '') {
-            return false;
+    function makeAIMove() {
+        const bestMove = findBestMove();
+        if (bestMove !== -1) {
+            makeMove(gameBoard.children[bestMove]);
         }
     }
-    return true;
-}
 
-function resetGame() {
-    currentPlayer = 'X';
-    gameIsOver = false;
-    resultElement.textContent = '';
-    updateCurrentPlayerDisplay(); // Reset display on game reset
+    function findBestMove() {
+        let bestScore = -Infinity;
+        let bestMove = -1;
+        const board = Array.from(gameBoard.children).map(cell => cell.textContent);
 
-    for (let i = 0; i < gameBoard.children.length; i++) {
-        gameBoard.children[i].textContent = '';
-        gameBoard.children[i].classList.remove('x', 'o'); // Remove the classes
+        for (let i = 0; i < 9; i++) {
+            if (board[i] === '') {
+                board[i] = 'O';
+                let score = minimax(board, 0, false);
+                board[i] = '';
+                if (score > bestScore) {
+                    bestScore = score;
+                    bestMove = i;
+                }
+            }
+        }
+
+        return bestMove;
     }
-}
 
-// Set up the reset button
-const resetButton = document.getElementById('resetButton');
-resetButton.addEventListener('click', resetGame);
+    function minimax(board, depth, isMaximizing) {
+        const scores = {
+            X: -10,
+            O: 10,
+            tie: 0
+        };
 
-createBoard();
+        let result = checkWinnerBoard(board);
+        if (result !== null) {
+            return scores[result];
+        }
+
+        if (isMaximizing) {
+            let bestScore = -Infinity;
+            for (let i = 0; i < 9; i++) {
+                if (board[i] === '') {
+                    board[i] = 'O';
+                    let score = minimax(board, depth + 1, false);
+                    board[i] = '';
+                    bestScore = Math.max(score, bestScore);
+                }
+            }
+            return bestScore;
+        } else {
+            let bestScore = Infinity;
+            for (let i = 0; i < 9; i++) {
+                if (board[i] === '') {
+                    board[i] = 'X';
+                    let score = minimax(board, depth + 1, true);
+                    board[i] = '';
+                    bestScore = Math.min(score, bestScore);
+                }
+            }
+            return bestScore;
+        }
+    }
+
+    function checkWinner(player) {
+        const cells = gameBoard.children;
+        const winCombos = [
+            [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
+            [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columns
+            [0, 4, 8], [2, 4, 6] // Diagonals
+        ];
+
+        return winCombos.some(combo => 
+            combo.every(index => cells[index].textContent === player)
+        );
+    }
+
+    function checkWinnerBoard(board) {
+        const winCombos = [
+            [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
+            [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columns
+            [0, 4, 8], [2, 4, 6] // Diagonals
+        ];
+
+        for (let combo of winCombos) {
+            if (board[combo[0]] && board[combo[0]] === board[combo[1]] && board[combo[0]] === board[combo[2]]) {
+                return board[combo[0]];
+            }
+        }
+
+        if (board.every(cell => cell !== '')) {
+            return 'tie';
+        }
+
+        return null;
+    }
+
+    function isBoardFull() {
+        return Array.from(gameBoard.children).every(cell => cell.textContent !== '');
+    }
+
+    function resetGame() {
+        currentPlayer = 'X';
+        gameIsOver = false;
+        resultElement.textContent = '';
+        updateCurrentPlayerDisplay();
+
+        for (let cell of gameBoard.children) {
+            cell.textContent = '';
+        }
+
+        if (aiOpponent && currentPlayer === 'O') {
+            setTimeout(makeAIMove, 500);
+        }
+    }
+
+    function updateCurrentPlayerDisplay() {
+        currentPlayerDisplay.textContent = `Current Player: ${currentPlayer}`;
+    }
+
+    playHumanButton.addEventListener('click', () => startGame(false));
+    playAIButton.addEventListener('click', () => startGame(true));
+    resetButton.addEventListener('click', resetGame);
+
+    // Initialize the game
+    modeSelection.classList.remove('hidden');
+    gameBoard.classList.add('hidden');
+    currentPlayerDisplay.classList.add('hidden');
+    resetButton.classList.add('hidden');
+});

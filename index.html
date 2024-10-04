@@ -1,15 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Tic-Tac-Toe</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div id="currentPlayer">Current Player: X</div> <!-- Added this line -->
-    <div id="gameBoard"></div>
-    <div id="result"></div>
-    <button id="resetButton">Reset</button>
-    
+    <div id="game-container">
+        <h1>Tic Tac Toe</h1>
+        <div id="mode-selection">
+            <h2>Choose Your Opponent</h2>
+            <button id="playHuman">Play with Human</button>
+            <button id="playAI">Play with AI</button>
+        </div>
+        <div id="gameBoard" class="hidden"></div>
+        <p id="currentPlayer" class="hidden"></p>
+        <p id="result"></p>
+        <button id="resetButton" class="hidden">Reset Game</button>
+    </div>
     <script src="js/script.js"></script>
 </body>
 </html>
