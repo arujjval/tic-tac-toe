@@ -5,14 +5,29 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <div id="currentPlayer">Current Player: X</div>
-    <!-- Added this line -->
-    <div id="gameBoard"></div>
-    <div id="result"></div>
-    <div id="buttonDiv">
-      <button id="resetButton">Play Again</button>
-      <button id="soundButton">Sound: ON</button>
+    <div id="main-container">
+      <!-- Main game content -->
+      <div id="game-container">
+        <div id="currentPlayer">Current Player: X</div>
+        <div id="gameBoard"></div>
+        <div id="result"></div>
+        <div id="buttonDiv">
+          <button id="resetButton">Play Again</button>
+          <button id="soundButton">Sound: ON</button>
+        </div>
+      </div>
+      
+      <!-- Scoreboard (added this section) -->
+      <div id="scoreboard-container">
+        <h2>Scoreboard</h2>
+        <div>Total Games: <span id="gamesPlayed">0</span></div>
+        <div>Wins X: <span id="winsX">0</span></div>
+        <div>Wins O: <span id="winsO">0</span></div>
+        <div>Draws: <span id="draws">0</span></div>
+      </div>
     </div>
+
     <script src="js/script.js"></script>
   </body>
 </html>
+

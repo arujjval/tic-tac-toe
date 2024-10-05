@@ -2,11 +2,22 @@ const gameBoard = document.getElementById("gameBoard");
 const resultElement = document.getElementById("result");
 const currentPlayerDisplay = document.getElementById("currentPlayer");
 const soundButton = document.getElementById("soundButton");
+const resetButton = document.getElementById("resetButton");
+
+// Scoreboard elements
+const gamesPlayedElement = document.getElementById("gamesPlayed");
+const winsXElement = document.getElementById("winsX");
+const winsOElement = document.getElementById("winsO");
+const drawsElement = document.getElementById("draws");
 
 let currentPlayer = "X";
 let gameIsOver = false;
+let gamesPlayed = 0;
+let winsX = 0;
+let winsO = 0;
+let draws = 0;
 
-//sound-effects"
+// Sound effects
 const backgroundSound = new Audio("sounds/background.wav");
 const clickSound = new Audio("sounds/click.wav");
 const winSound = new Audio("sounds/win.wav");
@@ -18,10 +29,10 @@ backgroundSound.play();
 soundButton.addEventListener("click", () => {
   if (backgroundSound.paused) {
     backgroundSound.play();
-    soundButton.textContent = "Sound: On";
+    soundButton.textContent = "Sound: ON";
   } else {
     backgroundSound.pause();
-    soundButton.textContent = "Sound: Off";
+    soundButton.textContent = "Sound: OFF";
   }
 });
 
@@ -45,11 +56,13 @@ function handleCellClick(event) {
     cell.classList.add(currentPlayer.toLowerCase());
 
     if (checkWinner()) {
-      resultElement.textContent = `${currentPlayer} wins!`;
+      resultElement.innerHTML = `<span style="color: ${currentPlayer === 'X' ? '#00f0ff' : '#ff4f94'};">${currentPlayer} wins!</span>`;
       gameIsOver = true;
+      updateScoreboard(currentPlayer); // Update the scoreboard for a win
     } else if (isBoardFull()) {
       resultElement.textContent = "It's a draw!";
       gameIsOver = true;
+      updateScoreboard("draw"); // Update the scoreboard for a draw
     } else {
       currentPlayer = currentPlayer === "X" ? "O" : "X";
       updateCurrentPlayerDisplay(); // Update display after each turn
@@ -59,7 +72,6 @@ function handleCellClick(event) {
 
 function updateCurrentPlayerDisplay() {
   currentPlayerDisplay.textContent = `Current Player: ${currentPlayer}`;
-  console.log("Current player:", currentPlayer);
 }
 
 function checkWinner() {
@@ -99,6 +111,22 @@ function isBoardFull() {
   return true;
 }
 
+function updateScoreboard(result) {
+  gamesPlayed++;
+  gamesPlayedElement.textContent = gamesPlayed;
+
+  if (result === "X") {
+    winsX++;
+    winsXElement.innerHTML = `<span style="color: #00f0ff;">${winsX}</span>`; // X wins in blue
+  } else if (result === "O") {
+    winsO++;
+    winsOElement.innerHTML = `<span style="color: #00f0ff;">${winsO}</span>`; // O wins in blue
+  } else if (result === "draw") {
+    draws++;
+    drawsElement.textContent = draws; // Draws remain in default color
+  }
+}
+
 function resetGame() {
   currentPlayer = "X";
   gameIsOver = false;
@@ -112,7 +140,7 @@ function resetGame() {
 }
 
 // Set up the reset button
-const resetButton = document.getElementById("resetButton");
 resetButton.addEventListener("click", resetGame);
 
 createBoard();
+
