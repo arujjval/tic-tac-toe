@@ -2,14 +2,11 @@ const gameBoard = document.getElementById("gameBoard");
 const resultElement = document.getElementById("result");
 const currentPlayerDisplay = document.getElementById("currentPlayer");
 const soundButton = document.getElementById("soundButton");
-const resetButton = document.getElementById("resetButton");
 
 let currentPlayer = "X";
 let gameIsOver = false;
-let scoreX = 0;
-let scoreO = 0;
 
-// Sound effects
+//sound-effects"
 const backgroundSound = new Audio("sounds/background.wav");
 const clickSound = new Audio("sounds/click.wav");
 const winSound = new Audio("sounds/win.wav");
@@ -35,8 +32,7 @@ function createBoard() {
     cell.addEventListener("click", handleCellClick);
     gameBoard.appendChild(cell);
   }
-  updateCurrentPlayerDisplay();
-  updateScoreBoard();
+  updateCurrentPlayerDisplay(); // Show the initial player
 }
 
 function handleCellClick(event) {
@@ -44,31 +40,26 @@ function handleCellClick(event) {
   const cell = event.target;
   if (!cell.textContent && !gameIsOver) {
     cell.textContent = currentPlayer;
+
+    // Add class for styling based on current player
     cell.classList.add(currentPlayer.toLowerCase());
 
     if (checkWinner()) {
       resultElement.textContent = `${currentPlayer} wins!`;
       gameIsOver = true;
-      winSound.play();
-
-      if (currentPlayer === 'X') {
-        scoreX++;
-      } else {
-        scoreO++;
-      }
-      updateScoreBoard();
     } else if (isBoardFull()) {
       resultElement.textContent = "It's a draw!";
       gameIsOver = true;
     } else {
       currentPlayer = currentPlayer === "X" ? "O" : "X";
-      updateCurrentPlayerDisplay();
+      updateCurrentPlayerDisplay(); // Update display after each turn
     }
   }
 }
 
 function updateCurrentPlayerDisplay() {
   currentPlayerDisplay.textContent = `Current Player: ${currentPlayer}`;
+  console.log("Current player:", currentPlayer);
 }
 
 function checkWinner() {
@@ -85,13 +76,17 @@ function checkWinner() {
 
   for (let combination of winningCombinations) {
     if (
-      gameBoard.children[combination[0]].textContent === gameBoard.children[combination[1]].textContent &&
-      gameBoard.children[combination[1]].textContent === gameBoard.children[combination[2]].textContent &&
+      gameBoard.children[combination[0]].textContent ===
+        gameBoard.children[combination[1]].textContent &&
+      gameBoard.children[combination[1]].textContent ===
+        gameBoard.children[combination[2]].textContent &&
       gameBoard.children[combination[0]].textContent !== ""
     ) {
+      winSound.play();
       return true;
     }
   }
+
   return false;
 }
 
@@ -108,20 +103,16 @@ function resetGame() {
   currentPlayer = "X";
   gameIsOver = false;
   resultElement.textContent = "";
-  updateCurrentPlayerDisplay();
+  updateCurrentPlayerDisplay(); // Reset display on game reset
 
   for (let i = 0; i < gameBoard.children.length; i++) {
     gameBoard.children[i].textContent = "";
-    gameBoard.children[i].classList.remove("x", "o");
+    gameBoard.children[i].classList.remove("x", "o"); // Remove the classes
   }
 }
 
-function updateScoreBoard() {
-  document.getElementById('scoreX').textContent = `Player X: ${scoreX}`;
-  document.getElementById('scoreO').textContent = `Player O: ${scoreO}`;
-}
-
 // Set up the reset button
+const resetButton = document.getElementById("resetButton");
 resetButton.addEventListener("click", resetGame);
 
 createBoard();
