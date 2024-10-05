@@ -10,6 +10,14 @@ Enjoy the game and test your strategy!
 
 ---
 
+## Important Notice for Contributors
+
+🚨 **ALL PULL REQUESTS MUST BE MADE TO THE `DEVELOPMENT` BRANCH** 🚨
+
+Please ensure that your pull requests are submitted to the `DEVELOPMENT` branch to help us maintain project stability. PRs directed to other branches will be closed without review.
+
+---
+
 ## How to Play
 
 - Players take turns marking an empty cell.
