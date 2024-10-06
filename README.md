@@ -33,9 +33,17 @@ Enjoy the game and test your strategy!
    ```
 3. Open the `index.html` file in your browser to play.
 
+## Live Game
+
+You can play the game directly via this link: [Play Tic Tac Toe](https://shashank1618.github.io/tic-tac-toe/)
+
 ## Contributions
 
 We welcome contributions from everyone! See the [Contributing Guidelines](CONTRIBUTING.md) to get started.
+
+## Support
+
+If you like this project, please consider giving it a ⭐ on GitHub to show your support and help others discover it!
 
 ## License
 
