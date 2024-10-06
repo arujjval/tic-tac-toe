@@ -6,12 +6,12 @@ body {
   height: 100vh;
   background: url("https://blenderartists.org/uploads/default/original/4X/0/5/f/05fb495b0f4ce4fb15ddc0cd136250a6aaae67c2.jpeg")
     no-repeat center center fixed;
-  background-size: cover; /* This makes the image cover the entire background */
+  background-size: cover; 
   font-family: "Arial", sans-serif;
   color: #fff;
 }
 
-/* Rest of your CSS remains unchanged */
+
 
 #currentPlayer {
   position: absolute;
@@ -63,10 +63,10 @@ body {
 }
 
 .cell.o {
-  color: #ff4f94; /* Neon Pink */
+  color: #ff4f94; 
   text-shadow: 0 0 10px rgba(255, 79, 148, 0.7);
-  font-weight: 900; /* Extra bold for O */
-  font-size: 3em; /* Optional: Increase font size for more emphasis */
+  font-weight: 900; 
+  font-size: 3em; 
 }
 
 .cell:hover {
@@ -100,6 +100,19 @@ body {
   margin-top: 20px;
   padding: 10px 20px;
   background-color: #e1ff00;
+  color: #1e1e2f;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  box-shadow: 0 0 15px rgba(0, 255, 127, 0.5);
+}
+
+#modeToggleButton {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #00ff7f;
   color: #1e1e2f;
   border: none;
   border-radius: 5px;

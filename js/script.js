@@ -2,11 +2,13 @@ const gameBoard = document.getElementById("gameBoard");
 const resultElement = document.getElementById("result");
 const currentPlayerDisplay = document.getElementById("currentPlayer");
 const soundButton = document.getElementById("soundButton");
+const modeToggleButton = document.getElementById("modeToggleButton");
 
 let currentPlayer = "X";
 let gameIsOver = false;
+let isSinglePlayerMode = false; // New variable to toggle between single and two-player mode
 
-//sound-effects"
+// Sound effects
 const backgroundSound = new Audio("sounds/background.wav");
 const clickSound = new Audio("sounds/click.wav");
 const winSound = new Audio("sounds/win.wav");
@@ -18,11 +20,17 @@ backgroundSound.play();
 soundButton.addEventListener("click", () => {
   if (backgroundSound.paused) {
     backgroundSound.play();
-    soundButton.textContent = "Sound: On";
+    soundButton.textContent = "Sound: ON";
   } else {
     backgroundSound.pause();
-    soundButton.textContent = "Sound: Off";
+    soundButton.textContent = "Sound: OFF";
   }
+});
+
+modeToggleButton.addEventListener("click", () => {
+  isSinglePlayerMode = !isSinglePlayerMode;
+  modeToggleButton.textContent = isSinglePlayerMode ? "Mode: Single Player" : "Mode: Two Player";
+  resetGame(); 
 });
 
 function createBoard() {
@@ -32,16 +40,16 @@ function createBoard() {
     cell.addEventListener("click", handleCellClick);
     gameBoard.appendChild(cell);
   }
-  updateCurrentPlayerDisplay(); // Show the initial player
+  updateCurrentPlayerDisplay(); 
 }
 
 function handleCellClick(event) {
-  clickSound.play();
-  const cell = event.target;
-  if (!cell.textContent && !gameIsOver) {
-    cell.textContent = currentPlayer;
+  if (gameIsOver) return;
 
-    // Add class for styling based on current player
+  const cell = event.target;
+  if (!cell.textContent) {
+    clickSound.play();
+    cell.textContent = currentPlayer;
     cell.classList.add(currentPlayer.toLowerCase());
 
     if (checkWinner()) {
@@ -52,14 +60,37 @@ function handleCellClick(event) {
       gameIsOver = true;
     } else {
       currentPlayer = currentPlayer === "X" ? "O" : "X";
-      updateCurrentPlayerDisplay(); // Update display after each turn
+      updateCurrentPlayerDisplay();
+
+      if (isSinglePlayerMode && currentPlayer === "O") {
+        setTimeout(aiMove, 500); 
+      }
+    }
+  }
+}
+
+function aiMove() {
+  const availableCells = Array.from(gameBoard.children).filter(cell => !cell.textContent);
+  if (availableCells.length > 0) {
+    const randomCell = availableCells[Math.floor(Math.random() * availableCells.length)];
+    randomCell.textContent = currentPlayer;
+    randomCell.classList.add(currentPlayer.toLowerCase());
+
+    if (checkWinner()) {
+      resultElement.textContent = `${currentPlayer} wins!`;
+      gameIsOver = true;
+    } else if (isBoardFull()) {
+      resultElement.textContent = "It's a draw!";
+      gameIsOver = true;
+    } else {
+      currentPlayer = currentPlayer === "X" ? "O" : "X";
+      updateCurrentPlayerDisplay();
     }
   }
 }
 
 function updateCurrentPlayerDisplay() {
   currentPlayerDisplay.textContent = `Current Player: ${currentPlayer}`;
-  console.log("Current player:", currentPlayer);
 }
 
 function checkWinner() {
@@ -91,23 +122,18 @@ function checkWinner() {
 }
 
 function isBoardFull() {
-  for (let i = 0; i < gameBoard.children.length; i++) {
-    if (gameBoard.children[i].textContent === "") {
-      return false;
-    }
-  }
-  return true;
+  return Array.from(gameBoard.children).every(cell => cell.textContent !== "");
 }
 
 function resetGame() {
   currentPlayer = "X";
   gameIsOver = false;
   resultElement.textContent = "";
-  updateCurrentPlayerDisplay(); // Reset display on game reset
+  updateCurrentPlayerDisplay();
 
-  for (let i = 0; i < gameBoard.children.length; i++) {
-    gameBoard.children[i].textContent = "";
-    gameBoard.children[i].classList.remove("x", "o"); // Remove the classes
+  for (let cell of gameBoard.children) {
+    cell.textContent = "";
+    cell.classList.remove("x", "o");
   }
 }
 
