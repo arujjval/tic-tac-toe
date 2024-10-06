@@ -2,6 +2,12 @@
 
 Thank you for considering contributing to the Tic Tac Toe project! Follow these steps to get started:
 
+## Important Notice
+
+🚨 **ALL PULL REQUESTS MUST BE MADE TO THE `DEVELOPMENT` BRANCH** 🚨
+
+Please ensure that your pull requests are submitted to the `DEVELOPMENT` branch. PRs directed to the `main` branch will be closed without review.
+
 ## Getting Started
 
 1. Fork the repository.
@@ -19,7 +25,7 @@ Thank you for considering contributing to the Tic Tac Toe project! Follow these 
 
 ## Pull Request Process
 
-1. Submit a pull request to the `main` branch.
+1. Submit a pull request to the `Development` branch.
 2. Ensure the PR describes the problem and the proposed solution.
 3. One of the maintainers will review your PR and provide feedback if necessary.
 4. Once approved, your PR will be merged.
