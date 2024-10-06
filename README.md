@@ -33,9 +33,17 @@ Enjoy the game and test your strategy!
    ```
 3. Open the `index.html` file in your browser to play.
 
-## Contributions
+## Contributing
 
-We welcome contributions from everyone! See the [Contributing Guidelines](CONTRIBUTING.md) to get started.
+If you'd like to contribute to the project, please read our
+ [Contributing Guidelines](CONTRIBUTING.md)
+
+### Contributors are awesome
+<a href="https://github.com/arujjval/tic-tac-toe/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=arujjval/tic-tac-toe" />
+</a>
+
+Made with [contrib.rocks](https://contrib.rocks).
 
 ## License
 
