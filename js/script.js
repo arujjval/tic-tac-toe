@@ -1,12 +1,14 @@
+// Tic-Tac-Toe
 const gameBoard = document.getElementById("gameBoard");
 const resultElement = document.getElementById("result");
+const resetButton = document.getElementById("resetButton");
 const currentPlayerDisplay = document.getElementById("currentPlayer");
 const soundButton = document.getElementById("soundButton");
 
 let currentPlayer = "X";
 let gameIsOver = false;
 
-//sound-effects"
+// Sound effects
 const backgroundSound = new Audio("sounds/background.wav");
 const clickSound = new Audio("sounds/click.wav");
 const winSound = new Audio("sounds/win.wav");
@@ -32,34 +34,37 @@ function createBoard() {
     cell.addEventListener("click", handleCellClick);
     gameBoard.appendChild(cell);
   }
-  updateCurrentPlayerDisplay(); // Show the initial player
+  updateCurrentPlayerDisplay();
 }
 
 function handleCellClick(event) {
   clickSound.play();
   const cell = event.target;
-  if (!cell.textContent && !gameIsOver) {
+  if (
+    !cell.textContent &&
+    !cell.classList.contains("x") &&
+    !cell.classList.contains("o") &&
+    !gameIsOver
+  ) {
     cell.textContent = currentPlayer;
-
-    // Add class for styling based on current player
     cell.classList.add(currentPlayer.toLowerCase());
-
     if (checkWinner()) {
       resultElement.textContent = `${currentPlayer} wins!`;
       gameIsOver = true;
+      winSound.play();
+      highlightWinningCells();
     } else if (isBoardFull()) {
       resultElement.textContent = "It's a draw!";
       gameIsOver = true;
     } else {
       currentPlayer = currentPlayer === "X" ? "O" : "X";
-      updateCurrentPlayerDisplay(); // Update display after each turn
+      updateCurrentPlayerDisplay();
     }
   }
 }
 
 function updateCurrentPlayerDisplay() {
   currentPlayerDisplay.textContent = `Current Player: ${currentPlayer}`;
-  console.log("Current player:", currentPlayer);
 }
 
 function checkWinner() {
@@ -73,46 +78,57 @@ function checkWinner() {
     [0, 4, 8],
     [2, 4, 6],
   ];
+  return winningCombinations.some((combination) => {
+    const [a, b, c] = combination;
+    return (
+      gameBoard.children[a].classList.contains(currentPlayer.toLowerCase()) &&
+      gameBoard.children[b].classList.contains(currentPlayer.toLowerCase()) &&
+      gameBoard.children[c].classList.contains(currentPlayer.toLowerCase())
+    );
+  });
+}
 
-  for (let combination of winningCombinations) {
+function highlightWinningCells() {
+  const winningCombinations = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
+  winningCombinations.forEach((combination) => {
+    const [a, b, c] = combination;
     if (
-      gameBoard.children[combination[0]].textContent ===
-        gameBoard.children[combination[1]].textContent &&
-      gameBoard.children[combination[1]].textContent ===
-        gameBoard.children[combination[2]].textContent &&
-      gameBoard.children[combination[0]].textContent !== ""
+      gameBoard.children[a].classList.contains(currentPlayer.toLowerCase()) &&
+      gameBoard.children[b].classList.contains(currentPlayer.toLowerCase()) &&
+      gameBoard.children[c].classList.contains(currentPlayer.toLowerCase())
     ) {
-      winSound.play();
-      return true;
+      gameBoard.children[a].classList.add("winner");
+      gameBoard.children[b].classList.add("winner");
+      gameBoard.children[c].classList.add("winner");
     }
-  }
-
-  return false;
+  });
 }
 
 function isBoardFull() {
-  for (let i = 0; i < gameBoard.children.length; i++) {
-    if (gameBoard.children[i].textContent === "") {
-      return false;
-    }
-  }
-  return true;
+  return [...gameBoard.children].every(
+    (cell) => cell.classList.contains("x") || cell.classList.contains("o")
+  );
 }
 
 function resetGame() {
   currentPlayer = "X";
   gameIsOver = false;
   resultElement.textContent = "";
-  updateCurrentPlayerDisplay(); // Reset display on game reset
-
-  for (let i = 0; i < gameBoard.children.length; i++) {
-    gameBoard.children[i].textContent = "";
-    gameBoard.children[i].classList.remove("x", "o"); // Remove the classes
-  }
+  updateCurrentPlayerDisplay();
+  [...gameBoard.children].forEach((cell) => {
+    cell.textContent = "";
+    cell.classList.remove("x", "o", "winner");
+  });
 }
 
-// Set up the reset button
-const resetButton = document.getElementById("resetButton");
 resetButton.addEventListener("click", resetGame);
-
 createBoard();
