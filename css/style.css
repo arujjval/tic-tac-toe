@@ -3,7 +3,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 97vh;
   background: url("https://blenderartists.org/uploads/default/original/4X/0/5/f/05fb495b0f4ce4fb15ddc0cd136250a6aaae67c2.jpeg")
     no-repeat center center fixed;
   background-size: cover; /* This makes the image cover the entire background */
