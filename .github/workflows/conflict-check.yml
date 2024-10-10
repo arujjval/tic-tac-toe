@@ -1,0 +1,30 @@
+name: Conflict Checker
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  conflict-check:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Step 1: Checkout the code from the repository
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    # Step 2: Fetch all branches to compare against
+    - name: Fetch all branches
+      run: git fetch --all
+
+    # Step 3: Check for conflicts with the main branch
+    - name: Check for Merge Conflicts with Main
+      run: |
+        git checkout ${{ github.event.pull_request.base.ref }}
+        git merge --no-commit --no-ff ${{ github.event.pull_request.head.ref }} || exit 1
+
+    # Step 4: Check for conflicts with GitHub Pages branch
+    - name: Check for Conflicts with GitHub Pages (gh-pages)
+      run: |
+        git checkout gh-pages
+        git merge --no-commit --no-ff ${{ github.event.pull_request.head.ref }} || exit 1
