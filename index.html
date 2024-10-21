@@ -3,15 +3,21 @@
   <head>
     <title>Tic-Tac-Toe</title>
     <link rel="stylesheet" href="css/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   </head>
   <body>
-    <div id="currentPlayer">Current Player: X</div>
+    <div class="currentPlayer">
+      <div id="currentPlayer">Current Player: X</div>
+    </div class="content">
+    <div>
     <!-- Added this line -->
     <div id="gameBoard"></div>
     <div id="result"></div>
     <div id="buttonDiv">
       <button id="resetButton">Play Again</button>
       <button id="soundButton">Sound: ON</button>
+    </div>
     </div>
     <script src="js/script.js"></script>
   </body>
