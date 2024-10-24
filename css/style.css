@@ -138,3 +138,123 @@ body {
 }
 
 /* https://static.vecteezy.com/system/resources/previews/001/879/980/non_2x/playful-tic-tac-toe-free-vector.jpg */
+/* Mobile devices (up to 480px) */
+
+@media (max-width: 480px) {
+  body {
+    height: auto;
+    padding: 20px;
+    background-size: cover;
+    display:block;
+  }
+
+  #gameBoard {
+    grid-template-columns: repeat(3, 70px);
+    grid-template-rows: repeat(3, 70px);
+    gap: 5px;
+    margin: 10px;
+    justify-content: center;
+    align-items:center;
+  }
+
+  .cell {
+    width: 70px;
+    height: 70px;
+    font-size: 1.5em;
+  }
+
+  #currentPlayer {
+    font-size: 18px;
+    padding: 5px 15px;
+    margin-bottom: 10px;
+    align-items:flex-start;
+  }
+
+  #result {
+    font-size: 1.2em;
+  }
+
+  #resetButton, #soundButton {
+    padding: 8px 15px;
+    font-size: 1em;
+  }
+  .content{
+    display: flex;
+  }
+}
+
+/* Tablet devices (480px to 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  body {
+    height: auto;
+    padding: 20px;
+    background-size: cover;
+  }
+
+  #gameBoard {
+    grid-template-columns: repeat(3, 90px);
+    grid-template-rows: repeat(3, 90px);
+    gap: 10px;
+    margin: 15px;
+    margin-top: 15px;
+  }
+
+  .cell {
+    width: 90px;
+    height: 90px;
+    font-size: 2em;
+  }
+
+  #currentPlayer {
+    font-size: 20px;
+    padding: 10px 20px;
+    margin-bottom:10px;
+  }
+
+  #result {
+    font-size: 1.4em;
+  }
+
+  #resetButton, #soundButton {
+    padding: 10px 20px;
+    font-size: 1.1em;
+  }
+}
+
+/* Larger screens (above 768px) */
+@media (min-width: 769px) {
+  body {
+    height: 100vh;
+    padding: 0;
+    background-size: cover;
+  }
+
+  #gameBoard {
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+    gap: 10px;
+    margin: 20px;
+    margin-top: 30px;
+  }
+
+  .cell {
+    width: 100px;
+    height: 100px;
+    font-size: 2em;
+  }
+
+  #currentPlayer {
+    font-size: 24px;
+    padding: 10px 20px;
+    margin-bottom:10px;
+  }
+
+  #result {
+    font-size: 1.5em;
+  }
+
+  #resetButton, #soundButton {
+    padding: 10px 20px;
+    font-size: 1.2em;
+  }
+}
