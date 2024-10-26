@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap');
+
 body {
   display: flex;
   flex-direction: column;
@@ -7,7 +9,7 @@ body {
   background: url("https://blenderartists.org/uploads/default/original/4X/0/5/f/05fb495b0f4ce4fb15ddc0cd136250a6aaae67c2.jpeg")
   no-repeat center center fixed;
   background-size: cover; /*This makes the image cover the entire background*/
-  font-family: "Arial", sans-serif;
+  font-family: "Major Mono Display", monospace;
   color: #fff;
 }
 
@@ -39,7 +41,7 @@ body {
   border-radius: 10px;
   border: 2px solid #00ffcc;
   box-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
-  font-family: "Arial", sans-serif;
+  font-family: "Major Mono Display", monospace;
   text-align: center;
 }
 
@@ -73,7 +75,7 @@ body {
   font-size: 3em; /* Optional: Increase font size for more emphasis */
 }
 
-.cell.o {
+.cell.d {
   color: #ff4f94; /* Neon Pink */
   text-shadow: 0 0 10px rgba(255, 79, 148, 0.7);
   font-weight: 900; /* Extra bold for O */
@@ -81,12 +83,12 @@ body {
 }
 
 .cell:hover {
-  background-color: rgba(255, 255, 255, 0.463);
+  background-color: rgba(44, 41, 41, 0.463);
   transform: scale(1.05);
 }
 #result {
-  margin-top: 20px;
-  font-size: 1.7em;
+  margin-top: 60px;
+  font-size: 5em;
   text-align: center;
   animation: glow 1.5s infinite alternate;
   color: #ff007f;
@@ -95,6 +97,7 @@ body {
 }
 
 #resetButton {
+  font-family: "Major Mono Display", monospace;
   margin-top: 20px;
   padding: 10px 20px;
   background-color: #00ff7f;
@@ -108,6 +111,7 @@ body {
 }
 
 #soundButton {
+  font-family: "Major Mono Display", monospace;
   margin-top: 20px;
   padding: 10px 20px;
   background-color: #e1ff00;

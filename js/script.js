@@ -51,7 +51,7 @@ function handleCellClick(event) {
       resultElement.textContent = "It's a draw!";
       gameIsOver = true;
     } else {
-      currentPlayer = currentPlayer === "X" ? "O" : "X";
+      currentPlayer = currentPlayer === "X" ? "D" : "X";
       updateCurrentPlayerDisplay(); // Update display after each turn
     }
   }
@@ -107,7 +107,7 @@ function resetGame() {
 
   for (let i = 0; i < gameBoard.children.length; i++) {
     gameBoard.children[i].textContent = "";
-    gameBoard.children[i].classList.remove("x", "o"); // Remove the classes
+    gameBoard.children[i].classList.remove("x", "d"); // Remove the classes
   }
 }
 
