@@ -1,0 +1,72 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #920808;
+    background-image: url("https://plus.unsplash.com/premium_photo-1675883659303-6201c6f5838b?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGdhbWluZyUyMHdhbGxwYXBlcnxlbnwwfHwwfHx8MA%3D%3D");
+    image-orientation: from-image;
+  }
+  
+  .container {
+    text-align: center;
+    background-color: rgb(210, 185, 240);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(204, 42, 42, 0.2);
+  }
+  
+  h1 {
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .cell {
+    width: 100px;
+    height: 100px;
+    background-color: #f9b89a;
+    border: 2px solid #333;
+    font-size: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .cell:hover {
+    background-color: #e0e0e0;
+  }
+  
+  #status {
+    margin-bottom: 10px;
+    font-size: 1.5em;
+    color: #333;
+  }
+  
+  #restart {
+    padding: 10px 20px;
+    background-color: #333;
+    color: rgb(243, 234, 234);
+    border: none;
+    cursor: pointer;
+  }
+  
+  #restart:hover {
+    background-color: #555;
+  }
+  
